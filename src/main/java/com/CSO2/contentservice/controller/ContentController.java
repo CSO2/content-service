@@ -40,6 +40,13 @@ public class ContentController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/blog/id/{id}")
+    public ResponseEntity<BlogPost> getBlogPostById(@PathVariable String id) {
+        return blogService.getPostById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @GetMapping("/faq")
     public List<FAQ> getAllFAQs() {
         return faqService.getAllFAQs();

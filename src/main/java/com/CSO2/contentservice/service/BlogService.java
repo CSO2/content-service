@@ -39,4 +39,8 @@ public class BlogService {
     public BlogPost createPost(BlogPost post) {
         return blogPostRepository.save(post);
     }
+
+    public Optional<BlogPost> getPostById(String id) {
+        return blogPostRepository.findById(id);
+    }
 }
