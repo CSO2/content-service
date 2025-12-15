@@ -1,0 +1,29 @@
+# --- Content Service ---
+spring:
+  application:
+    name: content-service
+
+  # 1. Load Vault
+  config:
+    import: "optional:vault://"
+
+  # 2. Vault Config
+  cloud:
+    vault:
+      enabled: true
+      uri: http://localhost:8200
+      token: my-root-token
+      kv:
+        enabled: true
+        backend: kv
+        default-context: cs02-app
+      authentication: TOKEN
+
+  # 3. Database Config (Specific variable for Content Service)
+  data:
+    mongodb:
+      uri: ${content_mongodb_uri:mongodb://localhost:27017/CSO2_content_service}
+
+# --- Server Port ---
+server:
+  port: 8086
